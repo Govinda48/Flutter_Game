@@ -6,8 +6,8 @@ class SignUp {
     id = json['id'];
     message = json['message'];
     data = [];
-    if (json['data'] != null) {
-      json['data'].forEach((mapObject) {
+    if (json['body'] != null) {
+      json['body'].forEach((mapObject) {
         Data obj = Data(mapObject);
         data!.add(obj);
       });
@@ -22,7 +22,7 @@ class Data {
   int? eMail;
   Data(Map<String, dynamic> json) {
     id = json['id'];
-    fullName = json['id'];
-    eMail = json['message'];
+    fullName = json['name'];
+    eMail = json['email'];
   }
 }

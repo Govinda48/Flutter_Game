@@ -88,7 +88,7 @@ class _ResistrationScreen extends State<ResistrationScreen> {
     }
   }
 
-  addData(String name, String mail) async {
+  addSignUP(String name, String mail) async {
     if (name == "" && mail == "") {
       log("Enter Required Fields");
     } else {
@@ -290,7 +290,7 @@ class _ResistrationScreen extends State<ResistrationScreen> {
                               });
                             }
                             await registration();
-                            addData(namecontroller.text.toString(),
+                            addSignUP(namecontroller.text.toString(),
                                 mailcontroller.text.toString());
                           },
                           child: Container(
