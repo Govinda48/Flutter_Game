@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon2024/model/modelclass.dart';
 import 'package:hackathon2024/view/login.dart';
+import 'package:http/http.dart' as http;
 
 class ResistrationScreen extends StatefulWidget {
   const ResistrationScreen({super.key});
@@ -11,6 +14,7 @@ class ResistrationScreen extends StatefulWidget {
 }
 
 class _ResistrationScreen extends State<ResistrationScreen> {
+  List<Data> signUpData = [];
   String email = "", name = "", password = "", id = "";
 
   // String email = "", password = "", name = "";
@@ -20,7 +24,18 @@ class _ResistrationScreen extends State<ResistrationScreen> {
 
   // addSignUP(){
   //   MyFirebaseAuth.addSignUp(namecontroller.text, mailcontroller.text, passwordcontroller.text);
-  // }
+  //
+  getSignUpData() async {
+    Uri url =
+        Uri.parse("https://demo0413095.mockable.io/digitalflake/api/login");
+    http.Response response = await http.post(url);
+    log(response.body);
+    var responseData = json.decode(response.body);
+    SignUp signupModel = SignUp(responseData);
+    setState(() {
+      signUpData = signupModel.data!;
+    });
+  }
 
   final _formkey = GlobalKey<FormState>();
 
@@ -312,6 +327,7 @@ class _ResistrationScreen extends State<ResistrationScreen> {
                             ),
                             GestureDetector(
                               onTap: () {
+                                // signUpData = getSignUpData();
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (_) => const LoginScreen(),
