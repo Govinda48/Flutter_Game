@@ -10,6 +10,15 @@ class AvailbaleDesk extends StatefulWidget {
 }
 
 class _AvailbaleDeskState extends State<AvailbaleDesk> {
+  Color _currentColor = Colors.grey.shade300; // Initial color
+
+  void changeColor() {
+    setState(() {
+      // Change color logic goes here
+      _currentColor = Colors.blue.shade200; // Change to any color you want
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +58,9 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
+                    onTap: () {
+                      changeColor();
+                    },
                     child: Container(
                       alignment: Alignment.center,
                       height: 50,
@@ -57,7 +69,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                         border: Border.all(color: Colors.grey),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(3)),
-                        color: Colors.grey.shade300,
+                        color: _currentColor,
                       ),
                       child: Text(
                         '1',

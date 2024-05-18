@@ -11,6 +11,15 @@ class BookScreen extends StatefulWidget {
 }
 
 class _BookScreenState extends State<BookScreen> {
+  Color _currentColor = Colors.grey; // Initial color
+
+  void changeColor() {
+    setState(() {
+      // Change color logic goes here
+      _currentColor = Colors.blue; // Change to any color you want
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -511,13 +520,15 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            changeColor();
+                          },
                           child: Container(
                             height: 42,
                             width: 152,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey,
+                              color: _currentColor,
                             ),
                             alignment: Alignment.center,
                             child: Text(
