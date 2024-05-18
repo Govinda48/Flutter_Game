@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon2024/screen/bookinghist.dart';
@@ -11,6 +13,11 @@ class AvailbaleDesk extends StatefulWidget {
 
 class _AvailbaleDeskState extends State<AvailbaleDesk> {
   Color _currentColor = Colors.grey.shade300; // Initial color
+  void sendSMS() async {
+    String recipient =
+        "1234567890"; // Replace with the recipient's phone number
+    String message = "Hello!"; // Your message here
+  }
 
   void changeColor() {
     setState(() {
@@ -21,6 +28,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
 
   @override
   Widget build(BuildContext context) {
+    print('${sendSMS}');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -60,6 +68,8 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                   GestureDetector(
                     onTap: () {
                       changeColor();
+                      sendSMS();
+                      // composeSMS(context);
                     },
                     child: Container(
                       alignment: Alignment.center,
