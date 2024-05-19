@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
-
+import 'package:hackathon2024/model/modelclass.dart';
+import 'package:hackathon2024/screen/bookingset.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon2024/screen/bookinghist.dart';
@@ -9,6 +12,23 @@ class AvailbaleDesk extends StatefulWidget {
 
   @override
   State<AvailbaleDesk> createState() => _AvailbaleDeskState();
+}
+
+Future<void> fetchBookingDetails() async {
+  final response = await http.get(Uri.parse(
+      'https://demo0413095.mockable.io/digitalflake/api/confirm_booking'));
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = json.decode(response.body);
+    final bookingResponse = BookingResponse.fromJson(data);
+
+    // Now you can use bookingResponse to access the parsed data
+    print(bookingResponse.bookingId);
+    print(bookingResponse.customer.name);
+    // etc.
+  } else {
+    throw Exception('Failed to load booking details');
+  }
 }
 
 class _AvailbaleDeskState extends State<AvailbaleDesk> {
@@ -69,6 +89,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                     onTap: () {
                       changeColor();
                       sendSMS();
+
                       // composeSMS(context);
                     },
                     child: Container(
@@ -985,7 +1006,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                         border: Border.all(color: Colors.grey),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(3)),
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade200,
                       ),
                       child: Text(
                         '40',
