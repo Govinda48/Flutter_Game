@@ -1005,7 +1005,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(3)),
+                            const BorderRadius.all(Radius.circular(4)),
                         color: Colors.grey.shade200,
                       ),
                       child: Text(
