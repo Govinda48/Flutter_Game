@@ -1009,7 +1009,7 @@ class _AvailbaleDeskState extends State<AvailbaleDesk> {
                         color: Colors.grey.shade200,
                       ),
                       child: Text(
-                        '41',
+                        '40',
                         style: GoogleFonts.getFont(
                           'Poppins',
                           color: Colors.black,
